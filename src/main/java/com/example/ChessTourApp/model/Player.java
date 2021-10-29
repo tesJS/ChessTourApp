@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+
 public class Player {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "player_sequence")
