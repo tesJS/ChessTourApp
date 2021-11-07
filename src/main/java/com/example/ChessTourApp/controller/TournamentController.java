@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,9 +53,9 @@ public class TournamentController {
 	}
 	
 	
-	@GetMapping(value = "/result/list")
-	public String listTourResults(Model model) {
-		model.addAttribute("tourResult", trRepository.findAll());
+	@GetMapping(value = "/result/list/{id}")
+	public String listTourResults(Model model,@PathVariable Long id) {
+		model.addAttribute("tourResult", trRepository.findBytourid(id));
 		return "tourresultlists";
 	}
 	

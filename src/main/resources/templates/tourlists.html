@@ -22,13 +22,19 @@ position:absolute;
 right:2rem;
 top:0.8rem;
 }
-input[type="submit"]{
-color:blue;
-width:10rem;
-height:3rem;
-border:2px solid blue;
-border-radius:20%;
-background-color:#ff0;
+.linkButton {
+	text-align: center;
+	color: blue;
+	width: 10rem;
+	height: 3rem;
+	border: 2px solid blue;
+	border-radius: 20%;
+	background-color: #ff0;
+}
+
+#link {
+	transform: translateY(40px);
+	text-decoration: none;
 }
 </style>
 <title>Server Programming</title>
@@ -68,13 +74,17 @@ background-color:#ff0;
 					<td th:text="${tr.tourdetails}" />
 					<td>
 						 <a class="btn btn-success" th:href="@{/edit/{id}(id=${tr.id})}">Edit</a>
+						 <a class="btn btn-success" th:href="@{/tour/reult/{id}(id=${tr.tourID})}">Details</a>
 						 <a	class="btn btn-danger" th:href="@{/delete/{id}(id=${tr.id})}"> Delete</a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 		<br> 
-		<a class="btn" th:href="@{/player/list}">Back to Players List</a>
+		<div class="linkButton" >
+			<a id="link" th:href="@{/player/list}"> Players List</a> 
+		</div>
+		
 	</div>
 	
 
