@@ -25,6 +25,12 @@ public class PlayerController {
 	
 
 	List<Player> playersList = new ArrayList<>();
+	
+	@GetMapping(value = "/api/list")
+	public @ResponseBody List<Player> listPlayers() {
+		return pRepository.findAll() ;
+	}
+
 
 	@GetMapping("/list")
 	public String getIndex(Model model) {
@@ -33,11 +39,7 @@ public class PlayerController {
 
 		return "playerslist";
 	}
-	@RequestMapping(value = "/list")
-	public @ResponseBody List<Player> listPlayers() {
-		return pRepository.findAll() ;
-	}
-
+	
 	@RequestMapping(value = "/add")
 	public void addPlayer(@RequestBody() Player pl) {
 		 pRepository.save(pl) ;
