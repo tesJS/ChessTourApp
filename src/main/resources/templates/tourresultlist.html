@@ -36,6 +36,19 @@ top:0.8rem;
 	transform: translateY(40px);
 	text-decoration: none;
 }
+.logout{
+position:absolute;
+right:2rem;
+top:0.8rem;
+}
+#logout{
+color:blue;
+width:10rem;
+height:3rem;
+border:2px solid blue;
+border-radius:20%;
+background-color:#ff0;
+}
 </style>
 <title>Server Programming</title>
 </head>
@@ -61,29 +74,34 @@ top:0.8rem;
 					<th th:text="PlayerId">Player Id</th>
 					<th th:text="TourId">Tour Id</th>
 					<th th:text="Score"></th>
-					<th th:text="Year"></th>
+					
 					
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="tr:${tourResult}">
+				<tr th:each="tr:${tourResults}">
 					<td th:text="${tr.player_id}" />
 					<td th:text="${tr.tourid}" />
 					<td th:text="${tr.score}" />
 					<td>
-						 <a class="btn btn-success" th:href="@{/edit/{id}(id=${tr.id})}">Edit</a>
-						 <a	class="btn btn-danger" th:href="@{/delete/{id}(id=${tr.id})}"> Delete</a>
+						 <a class="btn btn-success" th:href="@{/tour/result/edit/{id}(id=${tr.id})}">Edit</a>
+						 <a	class="btn btn-danger" th:href="@{/tour/result/delete/{id}(id=${tr.id})}"> Delete</a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 		<br> 
 		<div class="linkButton" >
-			<a class="link" th:href="@{/tour/list}">Back to Tournaments List</a>
+			<a class="link" th:href="@{/tour/list}">Back to Tournament Lists</a>
 		</div>
 		
 	</div>
 	
-
+<form class="logout" action="#" th:action="@{/logout}" method="post">
+		
+		<p>
+			<input id="logout" type="submit" value="Logout" />
+		</p>
+	</form>
 </body>
 </html>

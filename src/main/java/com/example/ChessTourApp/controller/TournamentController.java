@@ -37,6 +37,9 @@ public class TournamentController {
 	List<Tournament> tourList = new ArrayList<>();
 	List<TournamentResult> tourResultList = new ArrayList<>();
 	
+	
+	//For the Tournament List Page 
+	
 	@GetMapping("/list")
 	public String getIndex(Model model) {
 		
@@ -45,28 +48,64 @@ public class TournamentController {
 		return "tourlists";
 	}
 	
+	
+	@GetMapping("/edit/{id}")
+	public String editTournament(@PathVariable Long id, Model model) {
 
-	
-	@RequestMapping(value = "/result/list")
-	public @ResponseBody List<TournamentResult> listResults() {
-		return trRepository.findAll() ;
-	}
-	
-	
-	@GetMapping(value = "/result/list/{id}")
-	public String listTourResults(Model model,@PathVariable Long id) {
-		model.addAttribute("tourResult", trRepository.findBytourid(id));
-		return "tourresultlists";
+		Tournament tr = tRepository.getById(id);
+		model.addAttribute("tour", tr);		
+		return "updatetour";
 	}
 	
 	
 	@PostMapping(value = "/save")
-	public void saveTour(@RequestBody() Tournament tr) {
+	public String saveTour(Tournament tr) {
 		 tRepository.save(tr) ;
+		 return "redirect:/tour/list";
+		 
 	}
+	// rest version of saving Tournament
+	@PostMapping(value = "api/save")
+	public void saveRestTour(@RequestBody Tournament tr) {
+		 tRepository.save(tr) ;		 
+		 
+	}
+	@GetMapping("/delete/{id}")
+	public String deleteBook(@PathVariable Long id) {
 
-	@PostMapping(value = "/result/save")
-	public void saveTourResult(@RequestBody() TournamentResult tr) {
-		 trRepository.save(tr) ;
+		tRepository.deleteById(id);
+		return "redirect:/player/list";
+
 	}
+	// For the Corresponding Tournaments Results Page which is linked in the Tournaments List Page
+	@GetMapping("/result/{id}")
+	public String getTournamentResult(@PathVariable String id, Model model) {
+
+		List<TournamentResult> tr = trRepository.findByTourid(id);
+		model.addAttribute("tourResults", tr);		
+		return "tourresultlist";
+	}
+	
+	@GetMapping("/result/edit/{id}")
+	public String editTournamentResult(@PathVariable Long id, Model model) {
+
+		TournamentResult tr = trRepository.getById(id);
+		model.addAttribute("tourResult", tr);		
+		return "updatetourresult";
+	}
+	
+	@PostMapping(value = "/result/save")
+	public String saveTourResult(TournamentResult tr) {
+		 trRepository.save(tr) ;
+		 return "redirect:/tour/list";
+		 
+	}
+// rest version of saving Tournament
+	@PostMapping(value = "/api/result/save")
+	public void saveRestTourResult(@RequestBody TournamentResult tr) {
+		 trRepository.save(tr) ;	 
+		 
+	}
+		
+	
 }

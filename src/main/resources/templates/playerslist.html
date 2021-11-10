@@ -38,6 +38,19 @@ form {
 	transform: translateY(40px);
 	text-decoration: none;
 }
+.logout{
+position:absolute;
+right:2rem;
+top:0.8rem;
+}
+#logout{
+color:blue;
+width:10rem;
+height:3rem;
+border:2px solid blue;
+border-radius:20%;
+background-color:#ff0;
+}
 </style>
 <title>Server Programming</title>
 </head>
@@ -73,10 +86,10 @@ form {
 					<td th:text="${player.name}" />
 					<td th:text="${player.elo}" />
 					<td th:text="${player.club}" />
-					<td><a class="btn btn-success"
-						th:href="@{/edit/{id}(id=${player.id})}">Edit</a> <a
-						class="btn btn-danger" th:href="@{/delete/{id}(id=${player.id})}">
-							Delete</a></td>
+					<td>
+						<a class="btn btn-success" th:href="@{/player/edit/{id}(id=${player.id})}">Edit</a> 
+						<a class="btn btn-danger" th:href="@{/player/delete/{id}(id=${player.id})}">Delete</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -89,6 +102,11 @@ form {
 
 	</div>
 
-
+<form class="logout" action="#" th:action="@{/logout}" method="post">
+		
+		<p>
+			<input id="logout" type="submit" value="Logout" />
+		</p>
+	</form>
 </body>
 </html>

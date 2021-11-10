@@ -18,7 +18,7 @@ public class Tournament {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tournament_sequence")
 	private Long id;	
-	private String tourID;
+	private String tourid;
 	private Long noplayers;	
 	private String tourdetails;	
 	private String norounds;
@@ -30,13 +30,14 @@ public class Tournament {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Tournament(Long noplayers, String tourdetails, String norounds,String tourID) {
+	public Tournament(Long noplayers, String tourdetails, String norounds,String tourid) {
 		super();
 		this.noplayers = noplayers;
 		this.tourdetails = tourdetails;
 		this.norounds = norounds;
-		this.tourID=tourID;
+		this.tourid=tourid;
 	}
+	
 	
 	public Long getNoplayers() {
 		return noplayers;
@@ -62,12 +63,13 @@ public class Tournament {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getTourID() {
-		return tourID;
+	public String getTourid() {
+		return tourid;
 	}
-	public void setTourID(String tourID) {
-		this.tourID = tourID;
+	public void setTourid(String tourid) {
+		this.tourid = tourid;
 	}
+	
 	
 	
 
