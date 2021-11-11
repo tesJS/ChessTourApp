@@ -29,6 +29,8 @@ import com.example.ChessTourApp.repository.TournamentResultRepository;
 public class TournamentController {
 	
 	@Autowired
+	private PlayerRepository pRepository;
+	@Autowired
 	private TournamentRepository tRepository;
 	@Autowired
 	private TournamentResultRepository trRepository;
@@ -36,6 +38,7 @@ public class TournamentController {
 	
 	List<Tournament> tourList = new ArrayList<>();
 	List<TournamentResult> tourResultList = new ArrayList<>();
+	List<Player> plr = new ArrayList<>();
 	
 	
 	//For the Tournament List Page 
@@ -81,8 +84,11 @@ public class TournamentController {
 	@GetMapping("/result/{id}")
 	public String getTournamentResult(@PathVariable String id, Model model) {
 
-		List<TournamentResult> tr = trRepository.findByTourid(id);
-		model.addAttribute("tourResults", tr);		
+//		List<TournamentResult> tr = trRepository.findByTourid(id);
+		List<TournamentResult> tr = trRepository.findByTouridOrderByScoreDesc(id);
+		List<Player> plrs = pRepository.findAll();
+		model.addAttribute("tourResults", tr);
+		model.addAttribute("players", plrs);	
 		return "tourresultlist";
 	}
 	

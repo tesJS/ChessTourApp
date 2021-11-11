@@ -40,7 +40,8 @@ public class PlayerController {
 	@GetMapping("/list")
 	public String getIndex(Model model) {
 		
-		model.addAttribute("players", pRepository.findAll());
+		model.addAttribute("players", pRepository.findAllByOrderByEloDesc());
+		
 
 		return "playerslist";
 	}

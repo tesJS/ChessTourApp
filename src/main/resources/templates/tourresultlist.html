@@ -67,19 +67,23 @@ background-color:#ff0;
 <!-- <hr> -->
 
 	<div class="container">
-		<h2>Tournament Results</h2>
+		<h2>Tournament Results </h2>
+		
 		<table class="table table-bordered table-striped">
 			<thead class="thead-dark">
 				<tr>
+					<th th:text="No">Player Id</th>
 					<th th:text="PlayerId">Player Id</th>
 					<th th:text="TourId">Tour Id</th>
 					<th th:text="Score"></th>
+					<th th:text="Action"></th>
 					
 					
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="tr:${tourResults}">
+				<tr th:each="tr,iterStat:${tourResults}">
+					<td th:text="${iterStat.index+1}" />
 					<td th:text="${tr.player_id}" />
 					<td th:text="${tr.tourid}" />
 					<td th:text="${tr.score}" />

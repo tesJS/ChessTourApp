@@ -71,6 +71,7 @@ background-color:#ff0;
 		<table class="table table-bordered table-striped">
 			<thead class="thead-dark">
 				<tr>
+					<th th:text="No"></th>
 					<th th:text="TourId">Player Id</th>
 					<th th:text="NoPlayers">Tour Id</th>
 					<th th:text="NoRounds"></th>
@@ -80,7 +81,8 @@ background-color:#ff0;
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="tr:${tour}">
+				<tr th:each="tr,iterStat:${tour}">
+					<td th:text="${iterStat.index+1}" />
 					<td th:text="${tr.tourid}" />
 					<td th:text="${tr.noplayers}" />
 					<td th:text="${tr.norounds}" />
