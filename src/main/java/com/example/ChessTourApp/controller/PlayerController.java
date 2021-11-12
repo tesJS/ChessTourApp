@@ -30,7 +30,7 @@ public class PlayerController {
 
 	List<Player> playersList = new ArrayList<>();
 	
-	//restful response that gets players list
+	//RESTful  response that gets players list
 	@GetMapping(value = "/api/list")
 	public @ResponseBody List<Player> listPlayers() {
 		return pRepository.findAll() ;
@@ -51,7 +51,7 @@ public class PlayerController {
 		 pRepository.save(pl) ;
 		 return "redirect:/player/list";
 	}
-	//rest version of saving player
+	//RESTful  version of saving player
 	@PostMapping(value = "/api/add")
 	public void addRestPlayer(@RequestBody Player pl) {
 		 pRepository.save(pl) ;

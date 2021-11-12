@@ -92,7 +92,8 @@ background-color:#ff0;
 					<td th:text="${player.club}" />
 					<td>
 						<a class="btn btn-success" th:href="@{/player/edit/{id}(id=${player.id})}">Edit</a> 
-						<a class="btn btn-danger" th:href="@{/player/delete/{id}(id=${player.id})}">Delete</a>
+						<a class="btn btn-danger" th:href="@{/player/delete/{id}(id=${player.id})}"
+							sec:authorize="hasAuthority('ADMIN')">Delete</a>
 					</td>
 				</tr>
 			</tbody>

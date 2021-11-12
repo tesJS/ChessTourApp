@@ -54,17 +54,8 @@ background-color:#ff0;
 </head>
 <body>
 
-<!-- <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1> -->
-
-
-
-<!-- <form action="#" th:action="@{/logout}" method="post"> -->
-		
-<!-- 		<p> -->
-<!-- 			<input  type="submit" value="Logout" /> -->
-<!-- 		</p> -->
-<!-- 	</form> -->
-<!-- <hr> -->
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<hr>
 
 	<div class="container">
 		<h2>List of Tournaments</h2>
@@ -90,7 +81,8 @@ background-color:#ff0;
 					<td>
 						 <a class="btn btn-success" th:href="@{/tour/edit/{id}(id=${tr.id})}">Edit</a>
 						 <a class="btn btn-success" th:href="@{/tour/result/{id}(id=${tr.tourid})}">Details</a>
-						 <a	class="btn btn-danger" th:href="@{/tour/delete/{id}(id=${tr.id})}"> Delete</a>
+						 <a	class="btn btn-danger" th:href="@{/tour/delete/{id}(id=${tr.id})}" 
+						 	sec:authorize="hasAuthority('ADMIN')"> Delete</a>
 					</td>
 				</tr>
 			</tbody>

@@ -20,6 +20,7 @@ import com.example.ChessTourApp.model.TournamentResult;
 import com.example.ChessTourApp.repository.PlayerRepository;
 import com.example.ChessTourApp.repository.TournamentRepository;
 import com.example.ChessTourApp.repository.TournamentResultRepository;
+import com.example.ChessTourApp.service.TourResultSwitch;
 
 //@CrossOrigin(origins = "http://localhost:3000")
 @CrossOrigin(origins = "*")
@@ -67,7 +68,7 @@ public class TournamentController {
 		 return "redirect:/tour/list";
 		 
 	}
-	// rest version of saving Tournament
+	// RESTful  version of saving Tournament
 	@PostMapping(value = "api/save")
 	public void saveRestTour(@RequestBody Tournament tr) {
 		 tRepository.save(tr) ;		 
@@ -85,10 +86,22 @@ public class TournamentController {
 	public String getTournamentResult(@PathVariable String id, Model model) {
 
 //		List<TournamentResult> tr = trRepository.findByTourid(id);
-		List<TournamentResult> tr = trRepository.findByTouridOrderByScoreDesc(id);
+		List<TournamentResult> trl = trRepository.findByTouridOrderByScoreDesc(id);
+		List<TourResultSwitch> tsl = new ArrayList<>();		
 		List<Player> plrs = pRepository.findAll();
-		model.addAttribute("tourResults", tr);
-		model.addAttribute("players", plrs);	
+		
+		//to switch tournamentResult player id with the respective player name
+		for(TournamentResult tr: trl ) {
+			for(Player plr:plrs) {
+				if(tr.getPlayer_id()==plr.getId()) {
+					TourResultSwitch trs=new TourResultSwitch(plr.getName(),tr.getTourid(),tr.getScore());
+					trs.setId(tr.getId());
+					tsl.add(trs);
+				}
+			}
+		}
+		model.addAttribute("tourResults", tsl);
+		
 		return "tourresultlist";
 	}
 	
@@ -106,7 +119,7 @@ public class TournamentController {
 		 return "redirect:/tour/list";
 		 
 	}
-// rest version of saving Tournament
+// RESTful  version of saving Tournament
 	@PostMapping(value = "/api/result/save")
 	public void saveRestTourResult(@RequestBody TournamentResult tr) {
 		 trRepository.save(tr) ;	 
