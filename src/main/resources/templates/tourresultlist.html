@@ -73,6 +73,7 @@ background-color:#ff0;
 			<thead class="thead-dark">
 				<tr>
 					<th th:text="No"></th>
+					<th>TourResult Id</th>
 					<th>Tour Id</th>
 					<th >Player Name</th>					
 					<th th:text="Score"></th>
@@ -84,6 +85,7 @@ background-color:#ff0;
 			<tbody>
 				<tr th:each="tsl,iterStat:${tourResults}">
 					<td th:text="${iterStat.index+1}" />
+					<td th:text="${tsl.id}" />
 					<td th:text="${tsl.tourid}" />
 					<td th:text="${tsl.player_name}" />					
 					<td th:text="${tsl.score}" />

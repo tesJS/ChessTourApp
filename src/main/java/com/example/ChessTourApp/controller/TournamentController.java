@@ -75,7 +75,7 @@ public class TournamentController {
 		 
 	}
 	@GetMapping("/delete/{id}")
-	public String deleteBook(@PathVariable Long id) {
+	public String deleteTournament(@PathVariable Long id) {
 
 		tRepository.deleteById(id);
 		return "redirect:/player/list";
@@ -94,13 +94,14 @@ public class TournamentController {
 		for(TournamentResult tr: trl ) {
 			for(Player plr:plrs) {
 				if(tr.getPlayer_id()==plr.getId()) {
-					TourResultSwitch trs=new TourResultSwitch(plr.getName(),tr.getTourid(),tr.getScore());
+					TourResultSwitch trs=new TourResultSwitch(tr.getId(), plr.getName(),tr.getTourid(),tr.getScore());
 					trs.setId(tr.getId());
 					tsl.add(trs);
 				}
 			}
 		}
 		model.addAttribute("tourResults", tsl);
+		
 		
 		return "tourresultlist";
 	}

@@ -5,7 +5,7 @@ public class TourResultSwitch {
 	private Long id;
 	private String tourid;
 	private String score;
-	public TourResultSwitch(String player_name, String tourid, String score) {
+	public TourResultSwitch(Long id,String player_name, String tourid, String score) {
 		super();
 		this.player_name = player_name;
 		
