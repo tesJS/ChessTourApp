@@ -78,7 +78,7 @@ public class TournamentController {
 	public String deleteTournament(@PathVariable Long id) {
 
 		tRepository.deleteById(id);
-		return "redirect:/player/list";
+		return "redirect:/tour/list";
 
 	}
 	// For the Corresponding Tournaments Results Page which is linked in the Tournaments List Page
@@ -86,20 +86,11 @@ public class TournamentController {
 	public String getTournamentResult(@PathVariable String id, Model model) {
 
 //		List<TournamentResult> tr = trRepository.findByTourid(id);
-		List<TournamentResult> trl = trRepository.findByTouridOrderByScoreDesc(id);
-		List<TourResultSwitch> tsl = new ArrayList<>();		
+		List<TournamentResult> tsl = trRepository.findByTouridOrderByScoreDesc(id);
+		List<TourResultSwitch> tsl2 = new ArrayList<>();		
 		List<Player> plrs = pRepository.findAll();
 		
-		//to switch tournamentResult player id with the respective player name
-		for(TournamentResult tr: trl ) {
-			for(Player plr:plrs) {
-				if(tr.getPlayer_id()==plr.getId()) {
-					TourResultSwitch trs=new TourResultSwitch(tr.getId(), plr.getName(),tr.getTourid(),tr.getScore());
-					trs.setId(tr.getId());
-					tsl.add(trs);
-				}
-			}
-		}
+		
 		model.addAttribute("tourResults", tsl);
 		
 		
@@ -120,7 +111,15 @@ public class TournamentController {
 		 return "redirect:/tour/list";
 		 
 	}
-// RESTful  version of saving Tournament
+	@GetMapping("/result/delete/{id}")
+	public String deleteTournamentResult(@PathVariable Long id) {
+		TournamentResult tourResult=trRepository.getById(id);
+		String tourid= tourResult.getTourid();
+		trRepository.deleteById(id);
+		return "redirect:/tour/result/"+tourid;
+
+	}
+// RESTful  version of saving TournamentResult
 	@PostMapping(value = "/api/result/save")
 	public void saveRestTourResult(@RequestBody TournamentResult tr) {
 		 trRepository.save(tr) ;	 
