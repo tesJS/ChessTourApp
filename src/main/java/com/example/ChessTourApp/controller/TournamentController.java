@@ -83,17 +83,27 @@ public class TournamentController {
 	}
 	// For the Corresponding Tournaments Results Page which is linked in the Tournaments List Page
 	@GetMapping("/result/{id}")
-	public String getTournamentResult(@PathVariable String id, Model model) {
+	public String getTourResult(@PathVariable String id, Model model) {
 
-//		List<TournamentResult> tr = trRepository.findByTourid(id);
-		List<TournamentResult> tsl = trRepository.findByTouridOrderByScoreDesc(id);
-		List<TourResultSwitch> tsl2 = new ArrayList<>();		
+		int counter=0;
+		List<TournamentResult> tsl = trRepository.findByTouridOrderByScoreDesc(id);	
 		List<Player> plrs = pRepository.findAll();
+		List<TourResultSwitch> trsl = new ArrayList<>();
+				
+		for(TournamentResult tr: tsl) {
+			for(Player plr:plrs) {
+				if( (  tr.getPlayer_id().equals(plr.getId()) )){
+					counter++;
+							
+					trsl.add( new TourResultSwitch(plr.getName(), tr.getId(), tr.getTourid(), tr.getScore())   );
+					
+				}
+				
+				
+			}
+		}
 		
-		
-		model.addAttribute("tourResults", tsl);
-		
-		
+		model.addAttribute("tourResults", trsl);
 		return "tourresultlist";
 	}
 	
@@ -108,7 +118,7 @@ public class TournamentController {
 	@PostMapping(value = "/result/save")
 	public String saveTourResult(TournamentResult tr) {
 		 trRepository.save(tr) ;
-		 return "redirect:/tour/list";
+		 return "redirect:/tour/result/"+tr.getTourid();
 		 
 	}
 	@GetMapping("/result/delete/{id}")

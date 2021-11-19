@@ -75,7 +75,7 @@ background-color:#ff0;
 					<th th:text="No"></th>
 					<th>TourResult Id</th>
 					<th>Tour Id</th>
-					<th >Player Id</th>					
+					<th >Player Name</th>					
 					<th th:text="Score"></th>
 					<th th:text="Action"></th>
 					
@@ -87,7 +87,7 @@ background-color:#ff0;
 					<td th:text="${iterStat.index+1}" />
 					<td th:text="${tsl.id}" />
 					<td th:text="${tsl.tourid}" />
-					<td th:text="${tsl.player_id}" />					
+					<td th:text="${tsl.player_name}" />					
 					<td th:text="${tsl.score}" />
 					<td>
 						 <a class="btn btn-success" th:href="@{/tour/result/edit/{id}(id=${tsl.id})}">Edit</a>
