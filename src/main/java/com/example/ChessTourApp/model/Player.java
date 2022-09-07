@@ -9,7 +9,8 @@ import java.util.List;
 
 public class Player {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "player_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, updatable = false)
 	private Long id;	
 	private String name;	
 	private String elo;	

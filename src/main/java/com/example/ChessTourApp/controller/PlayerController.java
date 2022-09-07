@@ -30,6 +30,10 @@ public class PlayerController {
 
 	List<Player> playersList = new ArrayList<>();
 	
+	
+	
+	
+	
 	//RESTful  response that gets players list
 	@GetMapping(value = "/api/list")
 	public @ResponseBody List<Player> listPlayers() {

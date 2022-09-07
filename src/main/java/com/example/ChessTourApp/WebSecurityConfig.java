@@ -51,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
         .logout()
         .and()        
-        .authorizeRequests().antMatchers("/player/api/add" , "/player/api/list",
+        .authorizeRequests().antMatchers("/player/api/add" , "/player/api/list","/user/**",
         		"/tour/api/save","/tour/api/result/save") //Enalbe RESTful access from my react fron end
         .permitAll()
         .anyRequest().authenticated()        
