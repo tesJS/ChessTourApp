@@ -15,6 +15,7 @@ public class Player {
 	private String name;	
 	private String elo;	
 	private String club;
+	private String username;
 	
 //	@OneToMany(mappedBy = "Player")
 //	 private  List<TournamentResult> results;
@@ -23,11 +24,12 @@ public class Player {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Player(String name, String elo, String club) {
+	public Player(String name, String elo, String club, String username) {
 		super();
 		this.name = name;
 		this.elo = elo;
 		this.club = club;
+		this.username=username;
 	}
 	public Long getId() {
 		return id;
@@ -52,6 +54,13 @@ public class Player {
 	}
 	public void setClub(String club) {
 		this.club = club;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 	

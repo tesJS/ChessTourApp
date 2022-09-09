@@ -18,14 +18,14 @@ public class TournamenRepositoryTest {
 	 @Test
 	 public void createNewUser() {
 		  
-		 Tournament tr = new Tournament(44L,"a test tournament ","11","HSK225");
+		 Tournament tr = new Tournament(44L,"a test tournament ","11","HSK225","user");
 		 tRepository.save(tr);
 		 assertThat(tr.getTourid()=="HSK22");
 	}
 	 @Test
 	 public void searchTournament() {
 		 String tourid="HSK221";
-		 Tournament tr = tRepository.findByTourid(tourid);		
+		 Tournament tr = tRepository.findByUsername(tourid);		
 		 assertThat(tr).isInstanceOf(Tournament.class);
 	}
 	

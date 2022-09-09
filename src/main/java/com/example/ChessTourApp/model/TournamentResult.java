@@ -16,7 +16,8 @@ public class TournamentResult {
 	private Long id;	
 	private Long player_id;
 	private String tourid;
-	private String score;	
+	private String score;
+	
 //	
 //	@ManyToOne
 //    @JoinColumn(name = "id")
@@ -31,11 +32,12 @@ public class TournamentResult {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TournamentResult(Long player_id, String tourid, String score) {
+	public TournamentResult(Long player_id, String tourid, String score,String username) {
 		super();
 		this.player_id = player_id;
 		this.tourid = tourid;
 		this.score = score;
+		
 	}
 
 	public Long getId() {

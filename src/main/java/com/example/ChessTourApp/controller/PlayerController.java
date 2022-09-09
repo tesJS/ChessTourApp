@@ -34,17 +34,17 @@ public class PlayerController {
 	
 	
 	
-	//RESTful  response that gets players list
-	@GetMapping(value = "/api/list")
-	public @ResponseBody List<Player> listPlayers() {
-		return pRepository.findAll() ;
+	//RESTful  response that gets all of the players for the logged user
+	@GetMapping(value = "/api/list/{username}")
+	public @ResponseBody List<Player> listPlayers(@PathVariable String username ) {
+		return pRepository.findByUsernameOrderByEloDesc(username) ;
 	}
 
 
-	@GetMapping("/list")
-	public String getIndex(Model model) {
+	@GetMapping("/list/{username}")
+	public String getIndex(@PathVariable String username,Model model) {
 		
-		model.addAttribute("players", pRepository.findAllByOrderByEloDesc());
+		model.addAttribute("players", pRepository.findByUsernameOrderByEloDesc(username));
 		
 
 		return "playerslist";
@@ -58,6 +58,7 @@ public class PlayerController {
 	//RESTful  version of saving player
 	@PostMapping(value = "/api/add")
 	public void addRestPlayer(@RequestBody Player pl) {
+		System.out.println(pl.getUsername());
 		 pRepository.save(pl) ;
 		 
 	}

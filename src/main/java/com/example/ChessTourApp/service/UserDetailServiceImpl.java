@@ -16,6 +16,7 @@ import com.example.ChessTourApp.repository.UserRepository;
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
 	private final UserRepository repository;
+	
 
 	@Autowired
 	public UserDetailServiceImpl(UserRepository userRepository) {
@@ -27,6 +28,10 @@ public class UserDetailServiceImpl implements UserDetailsService {
 		User curruser = repository.findByUsername(username);
 		UserDetails user = new org.springframework.security.core.userdetails.User(username, curruser.getPasswordHash(),
 				AuthorityUtils.createAuthorityList(curruser.getRole()));
+		
 		return user;
-	}
+	}	
+
+	
+	
 }

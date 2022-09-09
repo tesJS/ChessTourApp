@@ -42,10 +42,10 @@ public class TournamentController {
 
 	// For the Tournament List Page
 
-	@GetMapping("/list")
-	public String getIndex(Model model) {
+	@GetMapping("/list/{username}")
+	public String getIndex(@PathVariable String username,Model model) {
 
-		model.addAttribute("tour", tRepository.findAll());
+		model.addAttribute("tour", tRepository.findByUsername(username));
 
 		return "tourlists";
 	}

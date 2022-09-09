@@ -46,12 +46,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
+		
+		
         http
         .authorizeRequests().antMatchers("/css/**").permitAll() // Enable css when logged out
         .and()
         .logout()
         .and()        
-        .authorizeRequests().antMatchers("/player/api/add" , "/player/api/list","/user/**",
+        .authorizeRequests().antMatchers("/player/**","/user/**",
         		"/tour/api/save","/tour/api/result/save") //Enalbe RESTful access from my react fron end
         .permitAll()
         .anyRequest().authenticated()        
@@ -60,7 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .formLogin()
 	      .loginPage("/login")
 	      .permitAll()
-          .defaultSuccessUrl("/tour/list", true)
+          .defaultSuccessUrl("/tour/list/", true)
           .permitAll()
         .and()
         .logout()
@@ -80,7 +82,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	  @Autowired public void configureGlobal(AuthenticationManagerBuilder auth)
 	  throws Exception {
 	  auth.userDetailsService(userDetailsService).passwordEncoder(new
-	  BCryptPasswordEncoder()); }
+	  BCryptPasswordEncoder()); 
+	  
+	  
+	  }
 	 
 	 
 	  

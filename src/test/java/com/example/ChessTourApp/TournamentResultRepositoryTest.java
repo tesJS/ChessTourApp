@@ -19,7 +19,7 @@ public class TournamentResultRepositoryTest {
 	 @Test
 	 public void createTournamentResult() {
 		  
-		 TournamentResult tr = new TournamentResult(152L,"HSK11","3");
+		 TournamentResult tr = new TournamentResult(152L,"HSL123","HSK11","3");
 		 trRepository.save(tr);
 		 assertThat(tr.getTourid()=="HSK225");
 	}

@@ -17,7 +17,7 @@ public class PlayerRepositoryTest {
 	 @Test
 	 public void createNewPlayer() {
 		  
-		 Player plr = new Player("Frank Ribery", "1888","User");
+		 Player plr = new Player("Frank Ribery", "1888","Ethiopian Chess Federation","user");
 		 pRepository.save(plr);
 		 assertThat(plr.getElo()=="1888");
 	}

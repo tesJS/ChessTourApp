@@ -22,6 +22,7 @@ public class Tournament {
 	private Long noplayers;	
 	private String tourdetails;	
 	private String norounds;
+	private String username;
 	
 //	@OneToMany(mappedBy = "tournament")
 //	 private  List<TournamentResult> results;
@@ -30,12 +31,13 @@ public class Tournament {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Tournament(Long noplayers, String tourdetails, String norounds,String tourid) {
+	public Tournament(Long noplayers, String tourdetails, String norounds,String tourid,String username) {
 		super();
 		this.noplayers = noplayers;
 		this.tourdetails = tourdetails;
 		this.norounds = norounds;
 		this.tourid=tourid;
+		this.username=username;
 	}
 	
 	
@@ -68,6 +70,12 @@ public class Tournament {
 	}
 	public void setTourid(String tourid) {
 		this.tourid = tourid;
+	}
+	public String getUserName() {
+		return username;
+	}
+	public void setUserName(String username) {
+		this.username = username;
 	}
 	
 	
