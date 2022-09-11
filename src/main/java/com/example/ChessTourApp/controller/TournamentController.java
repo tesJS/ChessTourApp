@@ -55,7 +55,7 @@ public class TournamentController {
 	public String editTournament(@PathVariable Long id, Model model) {
 		String username=SecurityContextHolder.getContext().getAuthentication().getName();
 		Tournament tr = tRepository.getById(id);
-		tr.setUserName(username);
+		tr.setUsername(username);
 		model.addAttribute("tour", tr);
 		return "updatetour";
 	}
