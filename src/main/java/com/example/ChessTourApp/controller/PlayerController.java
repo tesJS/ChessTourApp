@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -41,9 +42,9 @@ public class PlayerController {
 	}
 
 
-	@GetMapping("/list/{username}")
-	public String getIndex(@PathVariable String username,Model model) {
-		
+	@GetMapping("/list")
+	public String getIndex(Model model) {
+		String username= SecurityContextHolder.getContext().getAuthentication().getName();
 		model.addAttribute("players", pRepository.findByUsernameOrderByEloDesc(username));
 		
 
@@ -65,8 +66,9 @@ public class PlayerController {
 	
 	@GetMapping("/edit/{id}")
 	public String editPlayer(@PathVariable Long id, Model model) {
-
-		Player pl = pRepository.getById(id);	
+		String username=SecurityContextHolder.getContext().getAuthentication().getName();
+		Player pl = pRepository.getById(id);
+		pl.setUsername(username);
 		model.addAttribute("player", pl);		
 		return "updateplayer";
 	}

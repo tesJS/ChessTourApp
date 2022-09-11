@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -42,9 +43,9 @@ public class TournamentController {
 
 	// For the Tournament List Page
 
-	@GetMapping("/list/{username}")
-	public String getIndex(@PathVariable String username,Model model) {
-
+	@GetMapping("/list")
+	public String getIndex(Model model) {
+		String username=SecurityContextHolder.getContext().getAuthentication().getName();
 		model.addAttribute("tour", tRepository.findByUsername(username));
 
 		return "tourlists";
@@ -52,8 +53,9 @@ public class TournamentController {
 
 	@GetMapping("/edit/{id}")
 	public String editTournament(@PathVariable Long id, Model model) {
-
+		String username=SecurityContextHolder.getContext().getAuthentication().getName();
 		Tournament tr = tRepository.getById(id);
+		tr.setUserName(username);
 		model.addAttribute("tour", tr);
 		return "updatetour";
 	}
