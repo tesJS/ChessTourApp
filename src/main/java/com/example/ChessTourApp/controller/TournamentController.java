@@ -46,7 +46,10 @@ public class TournamentController {
 	@GetMapping("/list")
 	public String getIndex(Model model) {
 		String username=SecurityContextHolder.getContext().getAuthentication().getName();
-		model.addAttribute("tour", tRepository.findByUsername(username));
+		if(username.equals("admin"))
+			model.addAttribute("tour", tRepository.findAll());
+		else
+			model.addAttribute("tour", tRepository.findByUsername(username));
 
 		return "tourlists";
 	}

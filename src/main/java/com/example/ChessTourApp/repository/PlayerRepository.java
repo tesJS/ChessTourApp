@@ -10,11 +10,9 @@ import com.example.ChessTourApp.model.Player;
 
 @Repository
 public interface PlayerRepository extends JpaRepository <Player,Long> {
+
 	public List<Player> findByUsernameOrderByEloDesc(String username);
 	public Player findByNameAndUsername(String name,String username);
-	
-		
-	
 	
 
 }

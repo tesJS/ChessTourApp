@@ -30,11 +30,7 @@ public class PlayerController {
 	
 
 	List<Player> playersList = new ArrayList<>();
-	
-	
-	
-	
-	
+
 	//RESTful  response that gets all of the players for the logged user
 	@GetMapping(value = "/api/list/{username}")
 	public @ResponseBody List<Player> listPlayers(@PathVariable String username ) {
@@ -45,7 +41,10 @@ public class PlayerController {
 	@GetMapping("/list")
 	public String getIndex(Model model) {
 		String username= SecurityContextHolder.getContext().getAuthentication().getName();
-		model.addAttribute("players", pRepository.findByUsernameOrderByEloDesc(username));
+		if(username.equals("admin"))
+			model.addAttribute("players", pRepository.findAll());
+		else
+			model.addAttribute("players", pRepository.findByUsernameOrderByEloDesc(username));
 		
 
 		return "playerslist";
