@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.example.ChessTourApp.model.Tournament;
 import com.example.ChessTourApp.repository.TournamentRepository;
 
+import java.util.List;
+
 @SpringBootTest
 public class TournamenRepositoryTest {
 	@Autowired
@@ -25,7 +27,7 @@ public class TournamenRepositoryTest {
 	 @Test
 	 public void searchTournament() {
 		 String tourid="HSK221";
-		 Tournament tr = tRepository.findByUsername(tourid);		
+		 List<Tournament> tr = tRepository.findByUsername(tourid);
 		 assertThat(tr).isInstanceOf(Tournament.class);
 	}
 	

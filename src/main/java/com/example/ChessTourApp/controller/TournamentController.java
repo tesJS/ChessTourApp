@@ -149,4 +149,12 @@ public class TournamentController {
 
 	}
 
+	@GetMapping(value = "/checkTourid/{tourid}")
+	public @ResponseBody boolean listPlayers(@PathVariable String tourid ) {
+		Tournament tournament= tRepository.findByTourid(tourid) ;
+		if(tournament==null)
+			return true;
+		return  false;
+	}
+
 }
