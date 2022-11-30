@@ -21,7 +21,8 @@ import com.example.ChessTourApp.model.Player;
 import com.example.ChessTourApp.repository.UserRepository;
 import com.example.ChessTourApp.model.User;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://chesstourapp.com","http://www.chesstourapp.com",
+		"http://chesstourapp.com.s3-website.eu-north-1.amazonaws.com"})
 @RestController
 @RequestMapping("/user")
 public class UserController {

@@ -24,7 +24,8 @@ import com.example.ChessTourApp.repository.TournamentResultRepository;
 import com.example.ChessTourApp.service.TourResultSwitch;
 
 //@CrossOrigin(origins = "http://localhost:3000")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {"http://chesstourapp.com","http://www.chesstourapp.com",
+		"http://chesstourapp.com.s3-website.eu-north-1.amazonaws.com"})
 
 @Controller
 @RequestMapping("/tour")

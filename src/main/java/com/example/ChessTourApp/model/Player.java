@@ -24,6 +24,8 @@ public class Player {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+
 	public Player(String name, String elo, String club, String username) {
 		super();
 		this.name = name;
@@ -31,6 +33,8 @@ public class Player {
 		this.club = club;
 		this.username=username;
 	}
+
+
 	public Long getId() {
 		return id;
 	}

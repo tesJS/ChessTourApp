@@ -20,7 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.ChessTourApp.model.Player;
 import com.example.ChessTourApp.repository.PlayerRepository;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://chesstourapp.com","http://www.chesstourapp.com",
+		"http://chesstourapp.com.s3-website.eu-north-1.amazonaws.com"})
 @Controller
 @RequestMapping("/player")
 public class PlayerController {
@@ -36,6 +37,7 @@ public class PlayerController {
 	public @ResponseBody List<Player> listPlayers(@PathVariable String username ) {
 		return pRepository.findByUsernameOrderByEloDesc(username) ;
 	}
+
 
 
 	@GetMapping("/list")
